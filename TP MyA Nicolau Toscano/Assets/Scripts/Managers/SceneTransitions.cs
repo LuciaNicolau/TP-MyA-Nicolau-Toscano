@@ -16,6 +16,23 @@ public class SceneTransitions : MonoBehaviour
         EventManager.Subscribe("GameWon", YouWon);
     }
 
+    public void Level1()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level1");
+    }
+
+    public void Level2()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level2");
+    }
+    public void Level3()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level3");
+    }
+
     public void Resume()
     {
         UIManager.InactivePause();
@@ -39,9 +56,7 @@ public class SceneTransitions : MonoBehaviour
 
     public void Play()
     {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("Picnic");
-        //PointsContoller.totalScore = 0;
+        SceneManager.LoadScene("Levels");
     }
 
     public void Rules()

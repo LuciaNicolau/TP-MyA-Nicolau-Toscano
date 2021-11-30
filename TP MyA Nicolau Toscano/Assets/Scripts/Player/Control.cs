@@ -37,7 +37,6 @@ public class Control
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Debug.Log("Pausa");
             Time.timeScale = 0f;
             controlsMethod = PausedControls;
             player.UImanager.ActivePause();

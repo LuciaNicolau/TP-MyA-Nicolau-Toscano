@@ -8,21 +8,18 @@ public class Player : MonoBehaviour, IDamageable, IObservable
 
      public float _speed;
      [SerializeField]
-     private float _swipeSpeed;
-     [SerializeField]
      private float _jumpForce;
      public float life = 100;
      public float maxLife = 100;
      [SerializeField]
      private float minLife;
 
-     public float damage;
      public UIManager UImanager;
 
      Control _control;
      Movement _movement;
 
-     private Rigidbody _rb;
+     private Rigidbody2D _rb;
 
      List<IObserver> _allObservers = new List<IObserver>();
 
@@ -30,9 +27,9 @@ public class Player : MonoBehaviour, IDamageable, IObservable
      {
          EventManager.Subscribe("GameOver", Dead);
 
-         _rb = GetComponent<Rigidbody>();
+         _rb = GetComponent<Rigidbody2D>();
 
-         _movement = new Movement(transform, _swipeSpeed, _jumpForce, _rb);
+         _movement = new Movement(transform, _speed, _jumpForce, _rb);
          _control = new Control(this, _movement);
 
      }
@@ -50,21 +47,10 @@ public class Player : MonoBehaviour, IDamageable, IObservable
          _control.OnUpdate();
      }
 
-     public void SpeedPowerUp(params object[] n1)
-     {
-         _speed += (float)n1[0];
-     }
-
      public void ForwardMovemnt(float _speed)
      {
          transform.position += Vector3.forward * _speed * Time.deltaTime;
      }
-
-     public void PowerUpMovement(params object[] parameters)
-     {
-         transform.position += Vector3.forward * _speed * Time.deltaTime;
-     }
-
 
      void OnCollisionEnter(Collision collision)
      {
